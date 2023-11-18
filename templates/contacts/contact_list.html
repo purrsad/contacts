@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class="my-4">Contacts</h1>
+
+  <a class="btn btn-primary btn-sm" href="{% url 'contact_new' %}" role="button">New Contact</a>
+
+  <table class="table mt-3">
+    <thead>
+      <tr class="align-middle">
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Email</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for contact in contacts %}
+        <tr class="align-middle">
+          <th scope="row">{{ forloop.counter }}</th>
+          <td>{{ contact.name }}</td>
+          <td>{{ contact.phone_number }}</td>
+          <td>{{ contact.email }}</td>
+          <td>
+            <a class="btn btn-link text-decoration-none" href="{% url 'contact_detail' pk=contact.pk %}" role="button">View</a>
+            <a class="btn btn-link text-decoration-none" href="{% url 'contact_edit' pk=contact.pk %}" role="button">Edit</a>
+            <a class="btn btn-link text-decoration-none" href="{% url 'contact_delete' pk=contact.pk %}" role="button">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+{% endblock %}

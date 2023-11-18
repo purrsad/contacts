@@ -1,0 +1,15 @@
+<!-- contact_confirm_delete.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class="my-4">Confirm Deletion</h1>
+
+  <p>Are you sure you want to delete {{ contact.name }}?</p>
+  <form method="post" action="{% url 'contact_delete' pk=contact.pk %}">
+    {% csrf_token %}
+
+    <button class="btn btn-danger" type="submit">Yes, delete</button>
+    <a class="btn btn-link text-decoration-none" href="{% url 'contact_detail' pk=contact.pk %}" role="button">Cancel</a>
+  </form>
+  
+{% endblock %}

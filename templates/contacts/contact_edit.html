@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class="my-4">{% if form.instance.pk %}Edit Contact{% else %}Create a New Contact{% endif %}</h1>
+
+  <form method="post" action="{% if form.instance.pk %}{% url 'contact_edit' pk=form.instance.pk %}{% else %}{% url 'contact_new' %}{% endif %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button class="btn btn-primary" type="submit">Save</button>
+    <button class="btn"><a class="text-decoration-none" href="{% url 'contact_list' %}">Cancel</a></button>
+  </form>
+{% endblock %}
